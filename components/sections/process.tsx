@@ -2,171 +2,78 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Search,
-  LayoutDashboard,
-  PenTool,
-  Calculator,
-  HardHat,
-  Eye,
-  CheckCircle2,
-  ChevronDown,
-} from "lucide-react";
+import { Search, LayoutDashboard, PenTool, Calculator, HardHat, Eye, CheckCircle2, ChevronDown } from "lucide-react";
 
 const steps = [
-  {
-    number: "01",
-    label: "Diagnóstico",
-    icon: Search,
-    description:
-      "Analizamos el terreno, las necesidades del cliente y las condiciones del proyecto para establecer un punto de partida técnico sólido.",
-    details: [
-      "Visita técnica al sitio",
-      "Levantamiento de condiciones existentes",
-      "Análisis de requerimientos del cliente",
-      "Evaluación de factibilidad",
-    ],
-  },
-  {
-    number: "02",
-    label: "Planeación",
-    icon: LayoutDashboard,
-    description:
-      "Definimos el alcance, la estrategia constructiva, los recursos necesarios y el cronograma general del proyecto.",
-    details: [
-      "Definición de alcance y fases",
-      "Estrategia de construcción",
-      "Identificación de proveedores clave",
-      "Programa de trabajo preliminar",
-    ],
-  },
-  {
-    number: "03",
-    label: "Proyecto",
-    icon: PenTool,
-    description:
-      "Desarrollamos los planos arquitectónicos, estructurales e instalaciones con el nivel de detalle que exige cada etapa de obra.",
-    details: [
-      "Planos arquitectónicos ejecutivos",
-      "Diseño estructural",
-      "Instalaciones eléctricas e hidrosanitarias",
-      "Especificaciones técnicas detalladas",
-    ],
-  },
-  {
-    number: "04",
-    label: "Presupuesto",
-    icon: Calculator,
-    description:
-      "Elaboramos un presupuesto transparente y detallado, con análisis de precios unitarios y estimados por etapa de obra.",
-    details: [
-      "Catálogo de conceptos",
-      "Análisis de precios unitarios",
-      "Programa de inversión por etapa",
-      "Presentación y ajuste con el cliente",
-    ],
-  },
-  {
-    number: "05",
-    label: "Ejecución",
-    icon: HardHat,
-    description:
-      "Iniciamos la construcción con personal calificado, maquinaria adecuada y materiales de calidad certificada.",
-    details: [
-      "Apertura de obra",
-      "Coordinación de cuadrillas y maquinaria",
-      "Control de materiales y rendimientos",
-      "Reportes periódicos de avance",
-    ],
-  },
-  {
-    number: "06",
-    label: "Supervisión",
-    icon: Eye,
-    description:
-      "Supervisamos cada etapa para garantizar calidad, seguridad y cumplimiento de especificaciones. El cliente tiene visibilidad total.",
-    details: [
-      "Control de calidad en sitio",
-      "Verificación de especificaciones",
-      "Gestión de cambios y ajustes",
-      "Comunicación directa con el cliente",
-    ],
-  },
-  {
-    number: "07",
-    label: "Entrega",
-    icon: CheckCircle2,
-    description:
-      "Entregamos el proyecto terminado con recorrido final, documentación completa y acompañamiento postventa.",
-    details: [
-      "Recorrido de verificación final",
-      "Documentación de obra (planos as-built)",
-      "Garantías de construcción",
-      "Acompañamiento postventa",
-    ],
-  },
+  { n: "01", label: "Diagnóstico",  icon: Search,          body: "Analizamos el terreno, condiciones existentes y requerimientos para establecer un punto de partida técnico sólido." },
+  { n: "02", label: "Planeación",   icon: LayoutDashboard, body: "Definimos alcance, estrategia constructiva, recursos y cronograma general del proyecto." },
+  { n: "03", label: "Proyecto",     icon: PenTool,         body: "Desarrollamos planos arquitectónicos, estructurales e instalaciones con el nivel de detalle que exige la obra." },
+  { n: "04", label: "Presupuesto",  icon: Calculator,      body: "Elaboramos un presupuesto transparente con análisis de precios unitarios y estimados por etapa." },
+  { n: "05", label: "Ejecución",    icon: HardHat,         body: "Iniciamos la construcción con personal calificado, maquinaria adecuada y materiales de calidad certificada." },
+  { n: "06", label: "Supervisión",  icon: Eye,             body: "Supervisamos cada etapa para garantizar calidad, seguridad y cumplimiento. El cliente tiene visibilidad total." },
+  { n: "07", label: "Entrega",      icon: CheckCircle2,    body: "Recorrido final, documentación de obra, garantías y acompañamiento postventa." },
 ];
 
-function ProcessCard({
-  step,
-  index,
-}: {
-  step: (typeof steps)[0];
-  index: number;
-}) {
+function StepCard({ step, i }: { step: typeof steps[0]; i: number }) {
   const [open, setOpen] = useState(false);
   const Icon = step.icon;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+      transition={{ duration: 0.35, delay: i * 0.05 }}
       viewport={{ once: true }}
-      className="border border-[#2A2A2A] bg-[#111111] overflow-hidden"
+      style={{
+        border: "1px solid rgba(138,172,202,0.09)",
+        background: "#0D1117",
+      }}
     >
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-4 p-5 text-left cursor-pointer hover:bg-[#1A1A1A] transition-colors"
+        className="w-full flex items-center gap-3 px-4 py-4 text-left cursor-pointer transition-colors"
+        style={{ background: open ? "rgba(29,79,122,0.06)" : "transparent" }}
       >
-        <span className="font-[family-name:var(--font-cinzel)] text-[#C99A3B]/40 text-xs font-bold flex-shrink-0 w-8">
-          {step.number}
+        <span
+          className="text-[10px] w-7 flex-shrink-0"
+          style={{ fontFamily: "var(--font-cinzel)", color: "#1D4F7A" }}
+        >
+          {step.n}
         </span>
-        <div className="w-8 h-8 flex items-center justify-center border border-[#C99A3B]/30 flex-shrink-0">
-          <Icon className="w-4 h-4 text-[#C99A3B]" />
+        <div
+          className="w-7 h-7 flex items-center justify-center flex-shrink-0"
+          style={{ border: "1px solid rgba(138,172,202,0.14)" }}
+        >
+          <Icon className="w-3.5 h-3.5" style={{ color: "#8AACCA", opacity: 0.55 }} />
         </div>
-        <span className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-sm font-semibold flex-1">
+        <span
+          className="text-xs font-semibold flex-1"
+          style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2", opacity: 0.85 }}
+        >
           {step.label}
         </span>
         <ChevronDown
-          className={`w-4 h-4 text-[#F5F2EA]/30 flex-shrink-0 transition-transform duration-200 ${
-            open ? "rotate-180" : ""
-          }`}
+          className={`w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+          style={{ color: "rgba(138,172,202,0.25)" }}
         />
       </button>
-
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.22 }}
             className="overflow-hidden"
           >
-            <div className="px-5 pb-5 pt-2 border-t border-[#2A2A2A]">
-              <p className="text-[#F5F2EA]/60 text-sm leading-relaxed mb-4">
-                {step.description}
-              </p>
-              <ul className="space-y-2">
-                {step.details.map((d) => (
-                  <li key={d} className="flex items-center gap-2 text-xs text-[#F5F2EA]/50">
-                    <span className="w-3 h-px bg-[#C99A3B] flex-shrink-0" />
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <p
+              className="px-4 pb-4 text-xs leading-relaxed pt-3 ml-10"
+              style={{
+                color: "rgba(215,220,226,0.42)",
+                borderTop: "1px solid rgba(138,172,202,0.07)",
+              }}
+            >
+              {step.body}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -176,120 +83,102 @@ function ProcessCard({
 
 export default function Process() {
   return (
-    <section id="proceso" className="py-20 lg:py-32 bg-[#0A0A0A]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="proceso" className="py-16 sm:py-24" style={{ background: "#0B0F14" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-[#C99A3B] text-xs uppercase tracking-[0.4em] font-[family-name:var(--font-cinzel)] mb-4">
+        <div className="mb-10 sm:mb-14">
+          <p
+            className="text-[10px] uppercase mb-3"
+            style={{
+              fontFamily: "var(--font-cinzel)",
+              color: "#8AACCA",
+              letterSpacing: "0.4em",
+              opacity: 0.6,
+            }}
+          >
             Proceso
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[family-name:var(--font-cinzel)] text-[#F5F2EA] font-bold leading-tight max-w-3xl mx-auto">
+          <h2
+            className="font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight max-w-xl"
+            style={{ fontFamily: "var(--font-cinzel)", color: "#F5F7FA" }}
+          >
             Cómo trabajamos en cada proyecto
           </h2>
-          <p className="mt-6 text-[#F5F2EA]/50 text-sm max-w-xl mx-auto leading-relaxed">
-            Un proceso estructurado y transparente que garantiza resultados. Desde el primer
-            diagnóstico hasta la entrega final.
-          </p>
-          <div className="w-16 h-px bg-[#C99A3B] mx-auto mt-8" />
         </div>
 
-        {/* Mobile: accordion cards */}
-        <div className="lg:hidden space-y-2 max-w-2xl mx-auto">
-          {steps.map((step, i) => (
-            <ProcessCard key={step.number} step={step} index={i} />
-          ))}
+        {/* Mobile: accordion */}
+        <div className="lg:hidden max-w-lg space-y-1.5">
+          {steps.map((s, i) => <StepCard key={s.n} step={s} i={i} />)}
         </div>
 
-        {/* Desktop: horizontal timeline */}
-        <div className="hidden lg:block">
-          {/* Timeline bar */}
-          <div className="relative flex items-start gap-0">
-            {steps.map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.08 }}
-                  viewport={{ once: true }}
-                  className="flex-1 group"
-                >
-                  {/* Step header */}
-                  <div className="relative flex flex-col items-center">
-                    {/* Connector line */}
-                    {i < steps.length - 1 && (
-                      <div className="absolute left-1/2 top-5 w-full h-px bg-[#2A2A2A] z-0" />
-                    )}
-                    {/* Step circle */}
-                    <div className="relative z-10 w-10 h-10 flex items-center justify-center border border-[#C99A3B]/40 bg-[#0A0A0A] group-hover:border-[#C99A3B] group-hover:bg-[#C99A3B]/10 transition-all duration-300">
-                      <Icon className="w-4 h-4 text-[#C99A3B]" />
-                    </div>
-                    <span className="text-[#C99A3B]/50 text-[10px] font-[family-name:var(--font-cinzel)] mt-2">
-                      {step.number}
-                    </span>
-                  </div>
-
-                  {/* Content */}
-                  <div className="mt-4 px-2 text-center">
-                    <h3 className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-xs font-semibold mb-2">
-                      {step.label}
-                    </h3>
-                    <p className="text-[#F5F2EA]/40 text-[11px] leading-relaxed">
-                      {step.description.split(".")[0]}.
+        {/* Desktop: two columns */}
+        <div className="hidden lg:grid grid-cols-2 gap-8 items-start">
+          {/* Left: steps list */}
+          <div className="space-y-1.5">
+            {steps.map((s, i) => <StepCard key={s.n} step={s} i={i} />)}
+          </div>
+          {/* Right: visual accent */}
+          <div className="sticky top-24 space-y-6">
+            <div
+              className="p-7"
+              style={{
+                background: "#0D1117",
+                border: "1px solid rgba(138,172,202,0.10)",
+              }}
+            >
+              <p
+                className="text-[10px] uppercase tracking-widest mb-4"
+                style={{
+                  fontFamily: "var(--font-cinzel)",
+                  color: "#8AACCA",
+                  opacity: 0.6,
+                }}
+              >
+                Nuestro proceso
+              </p>
+              <p className="text-sm leading-relaxed mb-6" style={{ color: "rgba(215,220,226,0.50)" }}>
+                Un proceso estructurado y transparente que garantiza resultados. Desde el primer
+                diagnóstico hasta la entrega final con documentación completa.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { v: "7", l: "Etapas" },
+                  { v: "100%", l: "Documentado" },
+                  { v: "Directo", l: "Contacto cliente" },
+                  { v: "Garantía", l: "En entrega" },
+                ].map((x) => (
+                  <div
+                    key={x.l}
+                    className="p-3 text-center"
+                    style={{ border: "1px solid rgba(138,172,202,0.08)" }}
+                  >
+                    <p
+                      className="text-lg font-bold"
+                      style={{ fontFamily: "var(--font-cinzel)", color: "#8AACCA" }}
+                    >
+                      {x.v}
+                    </p>
+                    <p
+                      className="text-[10px] uppercase tracking-widest mt-0.5"
+                      style={{ color: "rgba(215,220,226,0.30)" }}
+                    >
+                      {x.l}
                     </p>
                   </div>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Detailed cards below */}
-          <div className="mt-16 grid grid-cols-4 gap-4">
-            {steps.slice(0, 4).map((step, i) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.number} className="bg-[#111111] border border-[#2A2A2A] p-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon className="w-4 h-4 text-[#C99A3B]" />
-                    <span className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-xs font-semibold">
-                      {step.label}
-                    </span>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {step.details.map((d) => (
-                      <li key={d} className="flex items-center gap-2 text-[11px] text-[#F5F2EA]/40">
-                        <span className="w-2 h-px bg-[#C99A3B]/60 flex-shrink-0" />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-          <div className="mt-4 grid grid-cols-3 gap-4">
-            {steps.slice(4).map((step) => {
-              const Icon = step.icon;
-              return (
-                <div key={step.number} className="bg-[#111111] border border-[#2A2A2A] p-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Icon className="w-4 h-4 text-[#C99A3B]" />
-                    <span className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-xs font-semibold">
-                      {step.label}
-                    </span>
-                  </div>
-                  <ul className="space-y-1.5">
-                    {step.details.map((d) => (
-                      <li key={d} className="flex items-center gap-2 text-[11px] text-[#F5F2EA]/40">
-                        <span className="w-2 h-px bg-[#C99A3B]/60 flex-shrink-0" />
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
+                ))}
+              </div>
+            </div>
+            <a
+              href="#contacto"
+              className="block w-full text-center py-3.5 text-[11px] font-semibold uppercase tracking-widest transition-opacity hover:opacity-90"
+              style={{
+                background: "linear-gradient(135deg, #D7DCE2 0%, #F5F7FA 50%, #D7DCE2 100%)",
+                color: "#030406",
+              }}
+            >
+              Iniciar proyecto
+            </a>
           </div>
         </div>
       </div>

@@ -7,31 +7,24 @@ import { cn } from "@/lib/utils";
 import type { LucideIcon } from "lucide-react";
 
 export interface CarouselItem {
-  id: string;
-  label: string;
+  id:          string;
+  label:       string;
   description: string;
-  icon: LucideIcon;
-  image: string;
-  imageAlt: string;
+  icon:        LucideIcon;
+  image:       string;
+  imageAlt:    string;
 }
 
 interface FeatureCarouselProps {
-  items: CarouselItem[];
+  items:            CarouselItem[];
   autoPlayInterval?: number;
-  className?: string;
 }
 
-export function FeatureCarousel({
-  items,
-  autoPlayInterval = 4000,
-  className,
-}: FeatureCarouselProps) {
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
+export function FeatureCarousel({ items, autoPlayInterval = 4500 }: FeatureCarouselProps) {
+  const [active,  setActive]  = useState(0);
+  const [paused,  setPaused]  = useState(false);
 
-  const next = useCallback(() => {
-    setActive((prev) => (prev + 1) % items.length);
-  }, [items.length]);
+  const next = useCallback(() => setActive((p) => (p + 1) % items.length), [items.length]);
 
   useEffect(() => {
     if (paused) return;
@@ -39,113 +32,116 @@ export function FeatureCarousel({
     return () => clearInterval(id);
   }, [paused, next, autoPlayInterval]);
 
-  const activeItem = items[active];
+  const item = items[active];
 
   return (
-    <div
-      className={cn("w-full", className)}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {/* Desktop: side-by-side layout */}
-      <div className="hidden md:grid md:grid-cols-2 gap-0 min-h-[520px] border border-[#2A2A2A]">
-        {/* Left: service chips */}
-        <div className="bg-[#0A0A0A] border-r border-[#2A2A2A] flex flex-col overflow-y-auto">
-          {items.map((item, i) => {
-            const Icon = item.icon;
+    <div className="w-full" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+
+      {/* ── Desktop: two-column ── */}
+      <div
+        className="hidden md:grid md:grid-cols-[240px_1fr] lg:grid-cols-[280px_1fr] min-h-[480px]"
+        style={{ border: "1px solid rgba(138,172,202,0.10)" }}
+      >
+        {/* Left: list */}
+        <div
+          className="overflow-y-auto scrollbar-none"
+          style={{
+            background: "#0D1117",
+            borderRight: "1px solid rgba(138,172,202,0.08)",
+          }}
+        >
+          {items.map((it, i) => {
+            const Icon = it.icon;
             const isActive = i === active;
             return (
               <button
-                key={item.id}
+                key={it.id}
                 onClick={() => setActive(i)}
                 className={cn(
-                  "flex items-start gap-4 px-6 py-5 text-left transition-all duration-200 cursor-pointer border-b border-[#1A1A1A] last:border-0 group",
-                  isActive
-                    ? "bg-[#C99A3B]/10 border-l-2 border-l-[#C99A3B]"
-                    : "hover:bg-[#111111] border-l-2 border-l-transparent"
+                  "w-full flex items-start gap-3 px-5 py-4 text-left cursor-pointer transition-colors duration-150",
+                  isActive ? "border-l-2" : "border-l-2 border-l-transparent"
                 )}
+                style={{
+                  borderBottom: "1px solid rgba(138,172,202,0.06)",
+                  borderLeftColor: isActive ? "#1D4F7A" : "transparent",
+                  background: isActive ? "rgba(29,79,122,0.08)" : "transparent",
+                }}
               >
                 <div
-                  className={cn(
-                    "w-8 h-8 flex-shrink-0 flex items-center justify-center border mt-0.5 transition-colors",
-                    isActive
-                      ? "border-[#C99A3B] bg-[#C99A3B]/15"
-                      : "border-[#2A2A2A] group-hover:border-[#C99A3B]/40"
-                  )}
+                  className="w-7 h-7 flex-shrink-0 flex items-center justify-center mt-0.5 transition-colors"
+                  style={{
+                    border: `1px solid ${isActive ? "rgba(138,172,202,0.40)" : "rgba(138,172,202,0.14)"}`,
+                  }}
                 >
                   <Icon
-                    className={cn(
-                      "w-4 h-4 transition-colors",
-                      isActive ? "text-[#C99A3B]" : "text-[#F5F2EA]/40 group-hover:text-[#C99A3B]/60"
-                    )}
+                    className="w-3.5 h-3.5 transition-colors"
+                    style={{ color: isActive ? "#8AACCA" : "rgba(138,172,202,0.35)" }}
                   />
                 </div>
-                <div>
-                  <p
-                    className={cn(
-                      "text-sm font-medium font-[family-name:var(--font-cinzel)] transition-colors leading-tight",
-                      isActive ? "text-[#C99A3B]" : "text-[#F5F2EA]/70 group-hover:text-[#F5F2EA]"
-                    )}
-                  >
-                    {item.label}
-                  </p>
-                  {isActive && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      className="text-xs text-[#F5F2EA]/50 mt-1 leading-relaxed"
-                    >
-                      {item.description}
-                    </motion.p>
-                  )}
-                </div>
+                <span
+                  className="text-xs font-medium leading-snug transition-colors"
+                  style={{
+                    fontFamily: "var(--font-cinzel)",
+                    color: isActive ? "#D7DCE2" : "rgba(215,220,226,0.40)",
+                  }}
+                >
+                  {it.label}
+                </span>
               </button>
             );
           })}
         </div>
 
         {/* Right: active image */}
-        <div className="relative overflow-hidden bg-[#111111]">
+        <div className="relative overflow-hidden" style={{ background: "#030406" }}>
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeItem.id}
+              key={item.id}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.35 }}
               className="absolute inset-0"
             >
-              <Image
-                src={activeItem.image}
-                alt={activeItem.imageAlt}
-                fill
-                className="object-cover"
-                sizes="(min-width: 768px) 50vw, 100vw"
+              <Image src={item.image} alt={item.imageAlt} fill className="object-cover" sizes="(min-width:768px) 60vw,100vw" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background: "linear-gradient(to top, rgba(3,4,6,0.85) 0%, rgba(3,4,6,0.20) 60%, transparent 100%)",
+                }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="w-4 h-px bg-[#C99A3B]" />
-                  <p className="text-[#C99A3B] text-[10px] uppercase tracking-widest">
-                    C&C Construcciones
-                  </p>
-                </div>
-                <h3 className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-xl font-semibold">
-                  {activeItem.label}
+              <div className="absolute bottom-5 left-6 right-6">
+                <p
+                  className="text-[10px] uppercase tracking-widest mb-1"
+                  style={{ color: "#8AACCA", opacity: 0.6 }}
+                >
+                  C&C · {item.label}
+                </p>
+                <h3
+                  className="text-lg font-semibold"
+                  style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2" }}
+                >
+                  {item.label}
                 </h3>
-                <p className="text-[#F5F2EA]/60 text-sm mt-1 leading-relaxed max-w-sm">
-                  {activeItem.description}
+                <p
+                  className="text-xs mt-1 leading-relaxed max-w-sm"
+                  style={{ color: "rgba(215,220,226,0.50)" }}
+                >
+                  {item.description}
                 </p>
               </div>
             </motion.div>
           </AnimatePresence>
-
           {/* Progress bar */}
-          <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#2A2A2A]">
+          <div
+            className="absolute bottom-0 inset-x-0 h-0.5"
+            style={{ background: "rgba(138,172,202,0.10)" }}
+          >
             {!paused && (
               <motion.div
-                key={`${active}-progress`}
-                className="h-full bg-[#C99A3B]"
+                key={`${active}-bar`}
+                className="h-full"
+                style={{ background: "linear-gradient(90deg, #1D4F7A, #8AACCA)" }}
                 initial={{ width: "0%" }}
                 animate={{ width: "100%" }}
                 transition={{ duration: autoPlayInterval / 1000, ease: "linear" }}
@@ -155,37 +151,50 @@ export function FeatureCarousel({
         </div>
       </div>
 
-      {/* Mobile: stacked cards */}
-      <div className="md:hidden space-y-4">
-        {items.map((item, i) => {
-          const Icon = item.icon;
+      {/* ── Mobile: vertical stack ── */}
+      <div className="md:hidden space-y-3">
+        {items.map((it, i) => {
+          const Icon = it.icon;
           return (
             <div
-              key={item.id}
-              className="border border-[#2A2A2A] overflow-hidden"
+              key={it.id}
+              className="overflow-hidden"
+              style={{ border: "1px solid rgba(138,172,202,0.10)", background: "#0D1117" }}
             >
-              <div className="relative aspect-video">
+              <div className="relative aspect-[16/9]">
                 <Image
-                  src={item.image}
-                  alt={item.imageAlt}
+                  src={it.image}
+                  alt={it.imageAlt}
                   fill
                   className="object-cover"
                   sizes="100vw"
                   loading={i < 3 ? "eager" : "lazy"}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/80 to-transparent" />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "rgba(3,4,6,0.45)" }}
+                />
                 <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <div className="w-7 h-7 flex items-center justify-center bg-[#C99A3B]/20 border border-[#C99A3B]/40">
-                    <Icon className="w-3.5 h-3.5 text-[#C99A3B]" />
+                  <div
+                    className="w-6 h-6 flex items-center justify-center"
+                    style={{ background: "rgba(29,79,122,0.40)", border: "1px solid rgba(138,172,202,0.30)" }}
+                  >
+                    <Icon className="w-3 h-3" style={{ color: "#8AACCA" }} />
                   </div>
-                  <p className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-sm font-semibold">
-                    {item.label}
+                  <p
+                    className="text-xs font-semibold"
+                    style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2" }}
+                  >
+                    {it.label}
                   </p>
                 </div>
               </div>
-              <div className="bg-[#111111] px-4 py-3">
-                <p className="text-[#F5F2EA]/55 text-xs leading-relaxed">{item.description}</p>
-              </div>
+              <p
+                className="text-xs px-4 py-3 leading-relaxed"
+                style={{ color: "rgba(215,220,226,0.40)" }}
+              >
+                {it.description}
+              </p>
             </div>
           );
         })}

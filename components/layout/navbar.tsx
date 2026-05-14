@@ -2,147 +2,179 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
-const navLinks = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Proyectos", href: "#proyectos" },
-  { label: "Proceso", href: "#proceso" },
-  { label: "Contacto", href: "#contacto" },
+const links = [
+  { label: "Servicios",  href: "#servicios" },
+  { label: "Proyectos",  href: "#proyectos" },
+  { label: "Proceso",    href: "#proceso" },
+  { label: "Contacto",   href: "#contacto" },
 ];
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen]         = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleLink = (href: string) => {
-    setIsOpen(false);
-    const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  const go = (href: string) => {
+    setOpen(false);
+    const id = href.slice(1);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+          "fixed top-0 inset-x-0 z-50 transition-all duration-400",
           scrolled
-            ? "bg-[#050505]/95 backdrop-blur-md border-b border-[#C99A3B]/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+            ? "border-b"
             : "bg-transparent"
         )}
+        style={scrolled ? {
+          background: "rgba(3,4,6,0.88)",
+          backdropFilter: "blur(16px)",
+          borderColor: "rgba(138,172,202,0.12)",
+        } : undefined}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 lg:h-20">
-            {/* Logo */}
-            <button
-              onClick={() => handleLink("#inicio")}
-              className="flex items-center gap-3 cursor-pointer group"
-              aria-label="C&C Construcciones - Inicio"
-            >
-              <div className="relative w-10 h-10 flex-shrink-0">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+
+            {/* Brand */}
+            <button onClick={() => go("#inicio")} className="flex items-center gap-2.5 cursor-pointer group" aria-label="Inicio">
+              <div className="relative w-8 h-8 flex-shrink-0">
                 <Image
-                  src="/brand/cc-logo.png"
-                  alt="C&C Construcciones logo"
+                  src="/brand/cc-metal-logo.png"
+                  alt="C&C"
                   fill
                   className="object-contain"
-                  sizes="40px"
+                  sizes="32px"
+                  onError={(e) => {
+                    const img = e.currentTarget as HTMLImageElement;
+                    if (!img.src.includes("cc-logo.png")) img.src = "/brand/cc-logo.png";
+                  }}
                 />
               </div>
-              <div className="hidden sm:block">
-                <p className="text-[#F5F2EA] font-[family-name:var(--font-cinzel)] text-sm font-semibold leading-tight tracking-wider group-hover:text-[#C99A3B] transition-colors">
+              <div className="hidden sm:block leading-none">
+                <p
+                  className="text-[#D7DCE2] text-xs font-semibold tracking-wider group-hover:text-[#8AACCA] transition-colors"
+                  style={{ fontFamily: "var(--font-cinzel)" }}
+                >
                   C&C
                 </p>
-                <p className="text-[#F5F2EA]/50 text-[9px] uppercase tracking-[0.2em] leading-none">
-                  Construcciones
+                <p className="text-[#8AACCA]/40 text-[9px] uppercase tracking-[0.18em]">
+                  Contratistas
                 </p>
               </div>
             </button>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-8" aria-label="Navegación principal">
-              {navLinks.map((link) => (
+            <nav className="hidden lg:flex items-center gap-7" aria-label="Navegación">
+              {links.map((l) => (
                 <button
-                  key={link.href}
-                  onClick={() => handleLink(link.href)}
-                  className="text-[#F5F2EA]/70 hover:text-[#C99A3B] text-xs uppercase tracking-widest font-medium transition-colors duration-200 cursor-pointer relative group"
+                  key={l.href}
+                  onClick={() => go(l.href)}
+                  className="text-[11px] uppercase tracking-widest transition-colors duration-200 cursor-pointer relative group"
+                  style={{ color: "rgba(138,172,202,0.50)" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#D7DCE2")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(138,172,202,0.50)")}
                 >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-[#C99A3B] group-hover:w-full transition-all duration-300" />
+                  {l.label}
+                  <span
+                    className="absolute -bottom-px left-0 w-0 h-px group-hover:w-full transition-all duration-300"
+                    style={{ background: "#1D4F7A" }}
+                  />
                 </button>
               ))}
             </nav>
 
             {/* CTA + hamburger */}
             <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                size="sm"
-                className="hidden lg:inline-flex"
-                onClick={() => handleLink("#contacto")}
-              >
-                Cotizar proyecto
-                <ChevronRight className="w-3.5 h-3.5" />
-              </Button>
-
               <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden p-2 text-[#F5F2EA]/70 hover:text-[#C99A3B] transition-colors cursor-pointer"
-                aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
+                onClick={() => go("#contacto")}
+                className="hidden lg:inline-flex items-center gap-1.5 px-5 py-2 text-[11px] uppercase tracking-widest transition-all duration-200 cursor-pointer"
+                style={{
+                  border: "1px solid rgba(138,172,202,0.25)",
+                  color: "#8AACCA",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(138,172,202,0.60)";
+                  e.currentTarget.style.color = "#D7DCE2";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "rgba(138,172,202,0.25)";
+                  e.currentTarget.style.color = "#8AACCA";
+                }}
               >
-                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                Cotizar
+              </button>
+              <button
+                onClick={() => setOpen(!open)}
+                className="lg:hidden p-2 transition-colors cursor-pointer"
+                style={{ color: "rgba(138,172,202,0.50)" }}
+                aria-label={open ? "Cerrar menú" : "Menú"}
+              >
+                {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <div
         className={cn(
           "fixed inset-0 z-40 lg:hidden transition-all duration-300",
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         )}
       >
         <div
-          className="absolute inset-0 bg-[#050505]/80 backdrop-blur-sm"
-          onClick={() => setIsOpen(false)}
+          className="absolute inset-0"
+          style={{ background: "rgba(3,4,6,0.75)", backdropFilter: "blur(4px)" }}
+          onClick={() => setOpen(false)}
         />
         <div
           className={cn(
-            "absolute top-0 right-0 h-full w-72 max-w-[85vw] bg-[#111111] border-l border-[#C99A3B]/20 flex flex-col pt-20 pb-8 px-6 transition-transform duration-300",
-            isOpen ? "translate-x-0" : "translate-x-full"
+            "absolute top-0 right-0 h-full w-64 flex flex-col pt-16 pb-8 px-6 transition-transform duration-300",
+            open ? "translate-x-0" : "translate-x-full"
           )}
+          style={{
+            background: "#0B0F14",
+            borderLeft: "1px solid rgba(138,172,202,0.10)",
+          }}
         >
-          <nav className="flex flex-col gap-1" aria-label="Menú móvil">
-            {navLinks.map((link) => (
+          <nav className="flex flex-col gap-0.5">
+            {[{ label: "Inicio", href: "#inicio" }, ...links].map((l) => (
               <button
-                key={link.href}
-                onClick={() => handleLink(link.href)}
-                className="text-left text-[#F5F2EA]/80 hover:text-[#C99A3B] text-sm uppercase tracking-widest font-medium transition-colors duration-200 cursor-pointer py-3 border-b border-[#2A2A2A] last:border-0"
+                key={l.href}
+                onClick={() => go(l.href)}
+                className="text-left text-xs uppercase tracking-widest py-3.5 transition-colors cursor-pointer"
+                style={{
+                  color: "rgba(215,220,226,0.50)",
+                  borderBottom: "1px solid rgba(138,172,202,0.07)",
+                }}
               >
-                {link.label}
+                {l.label}
               </button>
             ))}
           </nav>
           <div className="mt-auto">
-            <Button
-              variant="default"
-              size="lg"
-              className="w-full"
-              onClick={() => handleLink("#contacto")}
+            <button
+              onClick={() => go("#contacto")}
+              className="w-full py-3 text-[11px] font-semibold uppercase tracking-widest cursor-pointer transition-opacity hover:opacity-90"
+              style={{
+                background: "linear-gradient(135deg, #D7DCE2 0%, #F5F7FA 50%, #D7DCE2 100%)",
+                color: "#030406",
+              }}
             >
               Cotizar proyecto
-            </Button>
+            </button>
           </div>
         </div>
       </div>

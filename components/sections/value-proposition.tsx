@@ -7,99 +7,116 @@ const values = [
   {
     icon: Target,
     title: "Precisión técnica",
-    description:
-      "Cada proyecto se ejecuta con ingeniería rigurosa, planos detallados y supervisión continua para garantizar resultados exactos.",
-    accent: "border-t-[#C99A3B]",
+    description: "Ingeniería rigurosa, planos detallados y supervisión continua para garantizar resultados exactos.",
   },
   {
     icon: Shield,
     title: "Ejecución confiable",
-    description:
-      "Cumplimos tiempos, presupuestos y estándares de calidad. Tu inversión está respaldada por un equipo profesional comprometido.",
-    accent: "border-t-[#9A6A2F]",
+    description: "Cumplimos tiempos, presupuestos y estándares. Tu inversión respaldada por un equipo comprometido.",
   },
   {
     icon: Layers,
     title: "Diseño funcional",
-    description:
-      "Integramos visión arquitectónica con funcionalidad real. Espacios pensados para durar, crecer y generar valor a largo plazo.",
-    accent: "border-t-[#C99A3B]",
+    description: "Espacios pensados para durar, crecer y generar valor a largo plazo con visión arquitectónica real.",
   },
   {
     icon: Gem,
     title: "Acabados premium",
-    description:
-      "Los detalles definen la calidad. Seleccionamos materiales y terminaciones que reflejan el nivel de construcción que merece tu proyecto.",
-    accent: "border-t-[#9A6A2F]",
+    description: "Materiales y terminaciones que reflejan el nivel de construcción que merece tu proyecto.",
   },
+];
+
+const stats = [
+  { value: "10+",    label: "Años" },
+  { value: "200+",   label: "Proyectos" },
+  { value: "100%",   label: "Compromiso" },
+  { value: "Puebla", label: "Operaciones" },
 ];
 
 export default function ValueProposition() {
   return (
-    <section
-      id="valor"
-      className="py-20 lg:py-32 bg-[#050505] relative overflow-hidden"
-    >
-      {/* Subtle background grid */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "linear-gradient(#C99A3B 1px, transparent 1px), linear-gradient(90deg, #C99A3B 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section id="valor" className="py-16 sm:py-24" style={{ background: "#0B0F14" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-16 lg:mb-20">
-          <p className="text-[#C99A3B] text-xs uppercase tracking-[0.4em] font-[family-name:var(--font-cinzel)] mb-4">
+        <div className="mb-10 sm:mb-14">
+          <p
+            className="text-[10px] uppercase mb-3"
+            style={{
+              fontFamily: "var(--font-cinzel)",
+              color: "#8AACCA",
+              letterSpacing: "0.4em",
+              opacity: 0.6,
+            }}
+          >
             Propuesta de valor
           </p>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[family-name:var(--font-cinzel)] text-[#F5F2EA] font-bold leading-tight max-w-3xl mx-auto">
-            Construimos espacios sólidos, funcionales y preparados para crecer
+          <h2
+            className="font-bold leading-tight text-2xl sm:text-3xl lg:text-4xl max-w-2xl"
+            style={{ fontFamily: "var(--font-cinzel)", color: "#F5F7FA" }}
+          >
+            Sólidos desde los cimientos
           </h2>
-          <div className="w-16 h-px bg-[#C99A3B] mx-auto mt-8" />
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {values.map((value, i) => (
+        {/* Cards grid */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px"
+          style={{ background: "rgba(138,172,202,0.08)" }}
+        >
+          {values.map((v, i) => (
             <motion.div
-              key={value.title}
-              initial={{ opacity: 0, y: 30 }}
+              key={v.title}
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
               viewport={{ once: true }}
-              className={`group bg-[#111111] border border-[#2A2A2A] border-t-2 ${value.accent} p-6 lg:p-8 hover:border-[#C99A3B]/40 transition-all duration-300 hover:-translate-y-1`}
+              className="p-6 sm:p-7 group transition-colors duration-200"
+              style={{ background: "#0D1117" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "#161C24")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "#0D1117")}
             >
-              <div className="w-10 h-10 flex items-center justify-center border border-[#C99A3B]/30 mb-6 group-hover:border-[#C99A3B] transition-colors">
-                <value.icon className="w-5 h-5 text-[#C99A3B]" />
+              <div
+                className="w-8 h-8 flex items-center justify-center mb-5 transition-colors duration-200"
+                style={{ border: "1px solid rgba(138,172,202,0.18)" }}
+              >
+                <v.icon className="w-4 h-4" style={{ color: "#8AACCA", opacity: 0.6 }} />
               </div>
-              <h3 className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-base font-semibold mb-3 leading-tight">
-                {value.title}
+              <h3
+                className="text-sm font-semibold mb-2 leading-snug"
+                style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2" }}
+              >
+                {v.title}
               </h3>
-              <p className="text-[#F5F2EA]/55 text-sm leading-relaxed">
-                {value.description}
+              <p className="text-xs leading-relaxed" style={{ color: "rgba(215,220,226,0.40)" }}>
+                {v.description}
               </p>
             </motion.div>
           ))}
         </div>
 
-        {/* Stats bar */}
-        <div className="mt-16 border-t border-b border-[#2A2A2A] py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: "10+", label: "Años de experiencia" },
-            { value: "200+", label: "Proyectos entregados" },
-            { value: "100%", label: "Compromiso técnico" },
-            { value: "Puebla", label: "Centro de operaciones" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="font-[family-name:var(--font-cinzel)] text-2xl lg:text-3xl font-bold text-[#C99A3B]">
-                {stat.value}
+        {/* Stats strip */}
+        <div
+          className="mt-px grid grid-cols-2 sm:grid-cols-4 gap-px"
+          style={{ background: "rgba(138,172,202,0.08)" }}
+        >
+          {stats.map((s) => (
+            <div
+              key={s.label}
+              className="text-center py-6 sm:py-7"
+              style={{ background: "#0D1117" }}
+            >
+              <p
+                className="text-2xl sm:text-3xl font-bold"
+                style={{ fontFamily: "var(--font-cinzel)", color: "#8AACCA" }}
+              >
+                {s.value}
               </p>
-              <p className="text-[#F5F2EA]/50 text-xs uppercase tracking-widest mt-1">
-                {stat.label}
+              <p
+                className="text-[10px] uppercase mt-1"
+                style={{ color: "rgba(215,220,226,0.35)", letterSpacing: "0.2em" }}
+              >
+                {s.label}
               </p>
             </div>
           ))}

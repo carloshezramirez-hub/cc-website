@@ -7,163 +7,184 @@ import { ArrowUpRight } from "lucide-react";
 const projects = [
   {
     id: "residencial",
-    category: "Residencial",
-    title: "Vivienda de alto estándar",
-    description:
-      "Casas y conjuntos habitacionales con diseño arquitectónico propio, materiales de primera y acabados que superan expectativas.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Construcción residencial premium — imagen editorial",
     tag: "Residencial",
+    title: "Vivienda de alto estándar",
+    description: "Casas y conjuntos habitacionales con diseño propio, materiales de primera y acabados que superan expectativas.",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Construcción residencial — imagen editorial",
   },
   {
     id: "comercial",
-    category: "Comercial",
-    title: "Espacios para negocios de alto impacto",
-    description:
-      "Locales, naves comerciales, edificios corporativos y desarrollos mixtos con funcionalidad técnica y presencia arquitectónica.",
-    image:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Edificio comercial moderno — imagen editorial",
     tag: "Comercial",
+    title: "Espacios para negocios de alto impacto",
+    description: "Locales, naves comerciales y edificios corporativos con funcionalidad técnica y presencia arquitectónica.",
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Edificio comercial — imagen editorial",
   },
   {
     id: "obra-civil",
-    category: "Obra civil",
-    title: "Ingeniería al servicio del territorio",
-    description:
-      "Obras de infraestructura, pavimentación, sistemas hidráulicos y estructuras civiles con rigor técnico y cumplimiento normativo.",
-    image:
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Obra de ingeniería civil — imagen editorial",
     tag: "Obra civil",
+    title: "Ingeniería al servicio del territorio",
+    description: "Obras de infraestructura, sistemas hidráulicos y estructuras civiles con rigor técnico y normativa.",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Obra de ingeniería civil — imagen editorial",
   },
   {
     id: "remodelacion",
-    category: "Remodelación",
-    title: "Transformación de espacios existentes",
-    description:
-      "Ampliaciones, adecuaciones y remodelaciones integrales que renuevan el inmueble manteniendo su esencia y valor patrimonial.",
-    image:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Remodelación de interiores — imagen editorial",
     tag: "Remodelación",
+    title: "Transformación de espacios existentes",
+    description: "Ampliaciones y remodelaciones que renuevan el inmueble manteniendo su esencia y valor.",
+    image: "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Remodelación de interiores — imagen editorial",
   },
   {
     id: "infraestructura",
-    category: "Infraestructura",
-    title: "Proyectos que sostienen el desarrollo",
-    description:
-      "Redes de servicios, vialidades, instalaciones industriales y sistemas de soporte para desarrollos urbanos y privados.",
-    image:
-      "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&q=80&auto=format&fit=crop",
-    imageAlt: "Infraestructura industrial — imagen editorial",
     tag: "Infraestructura",
+    title: "Proyectos que sostienen el desarrollo",
+    description: "Redes de servicios, vialidades e instalaciones industriales para desarrollos urbanos y privados.",
+    image: "https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800&q=80&auto=format&fit=crop",
+    imageAlt: "Infraestructura industrial — imagen editorial",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="proyectos" className="py-20 lg:py-32 bg-[#050505]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="proyectos" className="py-16 sm:py-24" style={{ background: "#0B0F14" }}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-16">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 sm:mb-12">
           <div>
-            <p className="text-[#C99A3B] text-xs uppercase tracking-[0.4em] font-[family-name:var(--font-cinzel)] mb-4">
+            <p
+              className="text-[10px] uppercase mb-3"
+              style={{
+                fontFamily: "var(--font-cinzel)",
+                color: "#8AACCA",
+                letterSpacing: "0.4em",
+                opacity: 0.6,
+              }}
+            >
               Proyectos
             </p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-[family-name:var(--font-cinzel)] text-[#F5F2EA] font-bold leading-tight max-w-xl">
+            <h2
+              className="font-bold text-2xl sm:text-3xl lg:text-4xl leading-tight max-w-sm"
+              style={{ fontFamily: "var(--font-cinzel)", color: "#F5F7FA" }}
+            >
               Tipos de obra que desarrollamos
             </h2>
-            <div className="w-16 h-px bg-[#C99A3B] mt-8" />
           </div>
-          <p className="text-[#F5F2EA]/50 text-sm max-w-xs leading-relaxed">
-            Cada proyecto es único. Adaptamos nuestra capacidad técnica al alcance y visión del cliente.
-          </p>
+          <a
+            href="#contacto"
+            className="self-start sm:self-auto inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest transition-colors"
+            style={{ color: "rgba(138,172,202,0.40)" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "#D7DCE2")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(138,172,202,0.40)")}
+          >
+            Hablar con el equipo <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
-        {/* Projects grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.slice(0, 3).map((project, i) => (
+        {/* Top 3 */}
+        <div
+          className="grid grid-cols-1 sm:grid-cols-3 gap-px"
+          style={{ background: "rgba(138,172,202,0.08)" }}
+        >
+          {projects.slice(0, 3).map((p, i) => (
             <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              key={p.id}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden border border-[#2A2A2A] hover:border-[#C99A3B]/40 transition-all duration-300 cursor-pointer"
+              className="group relative overflow-hidden"
+              style={{ background: "#0D1117" }}
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
+                  src={p.image} alt={p.imageAlt} fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width:768px) 100vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/20 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="bg-[#050505]/80 backdrop-blur-sm border border-[#C99A3B]/30 text-[#C99A3B] text-[10px] uppercase tracking-widest px-2.5 py-1">
-                    {project.tag}
-                  </span>
-                </div>
-              </div>
-              <div className="p-5 bg-[#111111]">
-                <div className="flex items-start justify-between gap-2 mb-3">
-                  <h3 className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-base font-semibold leading-tight">
-                    {project.title}
-                  </h3>
-                  <ArrowUpRight className="w-4 h-4 text-[#C99A3B] flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </div>
-                <p className="text-[#F5F2EA]/50 text-xs leading-relaxed">{project.description}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Second row: 2 wide cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-          {projects.slice(3).map((project, i) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative overflow-hidden border border-[#2A2A2A] hover:border-[#C99A3B]/40 transition-all duration-300 cursor-pointer flex flex-col sm:flex-row"
-            >
-              <div className="relative w-full sm:w-48 flex-shrink-0 aspect-video sm:aspect-auto">
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 192px"
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "linear-gradient(to top, rgba(11,15,20,0.92) 0%, rgba(11,15,20,0.20) 60%, transparent 100%)" }}
                 />
-                <div className="absolute inset-0 bg-[#050505]/30" />
-              </div>
-              <div className="p-5 bg-[#111111] flex flex-col justify-center">
-                <span className="text-[#C99A3B] text-[10px] uppercase tracking-widest mb-2">
-                  {project.tag}
+                <span
+                  className="absolute top-3 left-3 text-[9px] uppercase px-2 py-0.5"
+                  style={{
+                    color: "#8AACCA",
+                    letterSpacing: "0.18em",
+                    border: "1px solid rgba(138,172,202,0.22)",
+                    background: "rgba(13,39,66,0.55)",
+                    backdropFilter: "blur(4px)",
+                  }}
+                >
+                  {p.tag}
                 </span>
-                <h3 className="font-[family-name:var(--font-cinzel)] text-[#F5F2EA] text-base font-semibold leading-tight mb-2">
-                  {project.title}
+              </div>
+              <div className="p-4 sm:p-5">
+                <h3
+                  className="text-sm font-semibold leading-snug mb-1.5"
+                  style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2" }}
+                >
+                  {p.title}
                 </h3>
-                <p className="text-[#F5F2EA]/50 text-xs leading-relaxed">{project.description}</p>
+                <p className="text-xs leading-relaxed" style={{ color: "rgba(215,220,226,0.38)" }}>
+                  {p.description}
+                </p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <a
-            href="#contacto"
-            className="inline-flex items-center gap-2 border border-[#C99A3B] text-[#C99A3B] px-8 py-3 text-xs uppercase tracking-widest hover:bg-[#C99A3B] hover:text-[#050505] transition-all duration-300"
-          >
-            Solicitar información de proyectos
-            <ArrowUpRight className="w-4 h-4" />
-          </a>
+        {/* Bottom 2 */}
+        <div
+          className="mt-px grid grid-cols-1 sm:grid-cols-2 gap-px"
+          style={{ background: "rgba(138,172,202,0.08)" }}
+        >
+          {projects.slice(3).map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              viewport={{ once: true }}
+              className="group flex overflow-hidden"
+              style={{ background: "#0D1117" }}
+            >
+              <div className="relative w-28 sm:w-36 flex-shrink-0">
+                <Image
+                  src={p.image} alt={p.imageAlt} fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="144px"
+                />
+                <div
+                  className="absolute inset-0"
+                  style={{ background: "rgba(11,15,20,0.35)" }}
+                />
+              </div>
+              <div className="p-4 flex flex-col justify-center">
+                <span
+                  className="text-[9px] uppercase mb-1"
+                  style={{ color: "#8AACCA", letterSpacing: "0.18em", opacity: 0.7 }}
+                >
+                  {p.tag}
+                </span>
+                <h3
+                  className="text-sm font-semibold leading-snug mb-1"
+                  style={{ fontFamily: "var(--font-cinzel)", color: "#D7DCE2" }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  className="text-xs leading-relaxed line-clamp-2"
+                  style={{ color: "rgba(215,220,226,0.38)" }}
+                >
+                  {p.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

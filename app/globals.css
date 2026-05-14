@@ -2,35 +2,46 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-josefin), 'Josefin Sans', sans-serif;
   --font-heading: var(--font-cinzel), 'Cinzel', serif;
 
-  /* Brand palette */
-  --color-black-deep: #050505;
-  --color-charcoal: #111111;
-  --color-steel: #2A2A2A;
-  --color-warm-white: #F5F2EA;
-  --color-gold: #C99A3B;
-  --color-copper: #9A6A2F;
+  /* Tech startup — graphite/steel-blue palette */
+  --color-bg-void:       #030406;   /* deepest black — hero base */
+  --color-bg-dark:       #0B0F14;   /* graphite — alternating sections */
+  --color-bg-dark-2:     #0D1117;   /* mid-dark — cards */
+  --color-bg-dark-3:     #161C24;   /* lightest dark — elevated surfaces */
+  --color-steel:         #2A3038;   /* steel gray — borders, dividers */
+  --color-silver:        #D7DCE2;   /* silver — primary text on dark */
+  --color-white-cold:    #F5F7FA;   /* cold white — headings */
+  --color-blue-dark:     #0D2742;   /* dark steel blue — deep accents */
+  --color-blue-mid:      #1D4F7A;   /* metallic blue — key accents */
+  --color-blue-light:    #8AACCA;   /* light steel blue — muted accents */
+  --color-glow:          rgba(64,132,190,0.22);  /* subtle blue glow */
+  --color-border-dark:   rgba(255,255,255,0.07);
+  --color-border-blue:   rgba(138,172,202,0.20);
+  --color-text-primary:  #D7DCE2;
+  --color-text-muted:    rgba(215,220,226,0.45);
 }
 
 :root {
-  --background: #050505;
-  --foreground: #F5F2EA;
+  --background: #030406;
+  --foreground: #D7DCE2;
 }
 
-html {
-  scroll-behavior: smooth;
+html,
+body {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Josefin Sans', sans-serif;
-  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -40,29 +51,24 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.02em;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #111111;
-}
-::-webkit-scrollbar-thumb {
-  background: #C99A3B;
-  border-radius: 2px;
-}
+/* Minimal scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #0B0F14; }
+::-webkit-scrollbar-thumb { background: #2A3038; border-radius: 2px; }
 
-/* Selection */
-::selection {
-  background: #C99A3B33;
-  color: #F5F2EA;
-}
+/* Text selection */
+::selection { background: rgba(29,79,122,0.40); color: #F5F7FA; }
+
+/* Hide scrollbar utility */
+.scrollbar-none { scrollbar-width: none; -ms-overflow-style: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
