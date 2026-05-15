@@ -41,7 +41,7 @@ interface FooterSectionProps {
 export function FooterSection({
   logoSrc    = "/brand/cc-metal-logo.png",
   brandName  = "C&C Construcciones",
-  tagline    = "Contratistas · Puebla",
+  tagline    = "Contratistas y mano de obra especializada",
   navLinks   = [],
   serviceLinks = [],
   contactInfo  = {},
@@ -135,7 +135,7 @@ export function FooterSection({
               className="text-xs leading-relaxed max-w-[220px]"
               style={{ color: "rgba(215,220,226,0.28)" }}
             >
-              Construcción, obra civil e infraestructura con precisión técnica en Puebla, México.
+              Construcción, obra civil e infraestructura con precisión técnica en Palmar de Bravo, Puebla.
             </p>
             <div className="flex gap-2.5 mt-5">
               {socialItems.map(({ Icon, href, label }) => (
@@ -228,7 +228,9 @@ export function FooterSection({
                 <li className="flex items-start gap-2">
                   <MapPin className="w-3 h-3 mt-0.5 flex-shrink-0" style={{ color: "rgba(138,172,202,0.28)" }} />
                   <span className="text-xs leading-relaxed" style={{ color: "rgba(215,220,226,0.28)" }}>
-                    {contactInfo.location}
+                    {contactInfo.location.split("\n").map((line, i) => (
+                      <span key={i} className="block">{line}</span>
+                    ))}
                   </span>
                 </li>
               )}
@@ -236,7 +238,7 @@ export function FooterSection({
                 <li className="flex items-center gap-2">
                   <Phone className="w-3 h-3 flex-shrink-0" style={{ color: "rgba(138,172,202,0.28)" }} />
                   <a
-                    href={`tel:${contactInfo.phone.replace(/\s/g,"")}`}
+                    href={`tel:+52${contactInfo.phone.replace(/[\s\-()]/g,"")}`}
                     className="text-xs transition-colors"
                     style={{ color: "rgba(215,220,226,0.28)" }}
                     onMouseEnter={(e) => (e.currentTarget.style.color = "#D7DCE2")}

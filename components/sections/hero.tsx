@@ -73,7 +73,7 @@ export default function Hero() {
 
           {/* Logo — large, centered */}
           <div
-            className="relative mb-8 sm:mb-10 w-[200px] sm:w-[280px] md:w-[360px] lg:w-[420px]"
+            className="relative mb-6 sm:mb-8 w-[280px] sm:w-[360px] md:w-[520px] lg:w-[680px] xl:w-[760px] max-w-[90vw]"
             style={{ aspectRatio: "3 / 1" }}
           >
             <Image
@@ -81,7 +81,7 @@ export default function Hero() {
               alt="C&C Contratistas y Mano de Obra Especializada"
               fill
               className="object-contain"
-              sizes="(max-width:640px) 200px, (max-width:768px) 280px, (max-width:1024px) 360px, 420px"
+              sizes="(max-width:640px) 280px, (max-width:768px) 360px, (max-width:1024px) 520px, (max-width:1280px) 680px, 760px"
               priority
               onError={(e) => {
                 const img = e.currentTarget as HTMLImageElement;

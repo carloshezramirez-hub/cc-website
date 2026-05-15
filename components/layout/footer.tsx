@@ -17,9 +17,9 @@ export default function Footer() {
         { label: "Supervisión de obra",    href: "#servicios" },
       ]}
       contactInfo={{
-        location: "Puebla, México",
-        phone:    "+52 222 000 0000",
-        email:    "contacto@ccconstrucciones.com",
+        location: "Av. 7 Poniente núm. 101, Col. Centro\nPalmar de Bravo, Puebla · C.P. 75500",
+        phone:    "249 108 4431",
+        email:    "psd_ezequiel23@hotmail.com",
       }}
       socials={{ facebook: "#", instagram: "#", linkedin: "#", youtube: "#" }}
     />

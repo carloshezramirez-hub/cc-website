@@ -64,29 +64,77 @@ export default function Contact() {
 
           {/* Left */}
           <div className="space-y-7">
-            {[
-              { icon: MapPin, label: "Ubicación",  val: "Puebla, México" },
-              { icon: Phone,  label: "Teléfono",   val: "+52 222 000 0000" },
-              { icon: Mail,   label: "Email",       val: "contacto@ccconstrucciones.com" },
-            ].map(({ icon: Icon, label, val }) => (
-              <div key={label} className="flex items-center gap-3">
-                <div
-                  className="w-9 h-9 flex items-center justify-center flex-shrink-0"
-                  style={{ border: "1px solid rgba(138,172,202,0.15)" }}
-                >
-                  <Icon className="w-3.5 h-3.5" style={{ color: "#8AACCA", opacity: 0.6 }} />
-                </div>
-                <div>
-                  <p
-                    className="text-[10px] uppercase tracking-widest"
-                    style={{ color: "rgba(138,172,202,0.45)" }}
-                  >
-                    {label}
-                  </p>
-                  <p className="text-sm" style={{ color: "#D7DCE2" }}>{val}</p>
-                </div>
+            {/* Dirección */}
+            <div className="flex items-start gap-3">
+              <div
+                className="w-9 h-9 flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={{ border: "1px solid rgba(138,172,202,0.15)" }}
+              >
+                <MapPin className="w-3.5 h-3.5" style={{ color: "#8AACCA", opacity: 0.6 }} />
               </div>
-            ))}
+              <div>
+                <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: "rgba(138,172,202,0.45)" }}>
+                  Ubicación
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
+                  Av. 7 Poniente núm. 101, Col. Centro
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
+                  Palmar de Bravo, Puebla
+                </p>
+                <p className="text-sm leading-relaxed" style={{ color: "rgba(215,220,226,0.55)" }}>
+                  C.P. 75500
+                </p>
+              </div>
+            </div>
+
+            {/* Teléfono */}
+            <div className="flex items-center gap-3">
+              <div
+                className="w-9 h-9 flex items-center justify-center flex-shrink-0"
+                style={{ border: "1px solid rgba(138,172,202,0.15)" }}
+              >
+                <Phone className="w-3.5 h-3.5" style={{ color: "#8AACCA", opacity: 0.6 }} />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: "rgba(138,172,202,0.45)" }}>
+                  Teléfono
+                </p>
+                <a
+                  href="tel:+522491084431"
+                  className="text-sm transition-colors"
+                  style={{ color: "#D7DCE2" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#8AACCA")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D7DCE2")}
+                >
+                  249 108 4431
+                </a>
+              </div>
+            </div>
+
+            {/* Email */}
+            <div className="flex items-center gap-3">
+              <div
+                className="w-9 h-9 flex items-center justify-center flex-shrink-0"
+                style={{ border: "1px solid rgba(138,172,202,0.15)" }}
+              >
+                <Mail className="w-3.5 h-3.5" style={{ color: "#8AACCA", opacity: 0.6 }} />
+              </div>
+              <div>
+                <p className="text-[10px] uppercase tracking-widest mb-1" style={{ color: "rgba(138,172,202,0.45)" }}>
+                  Email
+                </p>
+                <a
+                  href="mailto:psd_ezequiel23@hotmail.com"
+                  className="text-sm break-all transition-colors"
+                  style={{ color: "#D7DCE2" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = "#8AACCA")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#D7DCE2")}
+                >
+                  psd_ezequiel23@hotmail.com
+                </a>
+              </div>
+            </div>
 
             <ExpandMap />
           </div>
@@ -125,7 +173,7 @@ export default function Contact() {
               <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-4">
                 {[
                   { id: "nombre",   label: "Nombre completo *", type: "text",  req: true,  placeholder: "Tu nombre" },
-                  { id: "telefono", label: "Teléfono *",         type: "tel",   req: true,  placeholder: "+52 222 000 0000" },
+                  { id: "telefono", label: "Teléfono *",         type: "tel",   req: true,  placeholder: "249 108 4431" },
                   { id: "email",    label: "Email *",             type: "email", req: true,  placeholder: "tu@email.com" },
                 ].map((f) => (
                   <div key={f.id}>
