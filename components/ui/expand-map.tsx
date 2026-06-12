@@ -10,7 +10,7 @@ interface ExpandMapProps {
   className?: string;
 }
 
-export function ExpandMap({ location = "C&C Contratistas · Palmar de Bravo, Puebla", address = "Av. 7 Poniente núm. 101 · C.P. 75500", className }: ExpandMapProps) {
+export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla", address = "C. 11 Sur 14502-3ra · C.P. 72490", className }: ExpandMapProps) {
   const [expanded, setExpanded] = useState(false);
 
   const mapUrl =
@@ -91,7 +91,7 @@ export function ExpandMap({ location = "C&C Contratistas · Palmar de Bravo, Pue
           className="w-full h-full"
           style={{ border: 0, filter: "invert(92%) hue-rotate(180deg) grayscale(50%)" }}
           allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación C&C Contratistas — Palmar de Bravo, Puebla"
+          title="Ubicación C&C Contratistas — San Ramón, Puebla de Zaragoza"
         />
       </div>
     </div>

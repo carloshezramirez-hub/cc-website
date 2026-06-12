@@ -17,9 +17,9 @@ export default function Footer() {
         { label: "Supervisión de obra",    href: "#servicios" },
       ]}
       contactInfo={{
-        location: "Av. 7 Poniente núm. 101, Col. Centro\nPalmar de Bravo, Puebla · C.P. 75500",
-        phone:    "249 108 4431",
-        email:    "psd_ezequiel23@hotmail.com",
+        location: "C. 11 Sur 14502-3ra, San Ramón\nHeroica Puebla de Zaragoza, Pue. · C.P. 72490",
+        phone:    "222 813 9825",
+        email:    "Javierhrdirector@gmail.com",
       }}
       socials={{ facebook: "#", instagram: "#", linkedin: "#", youtube: "#" }}
     />

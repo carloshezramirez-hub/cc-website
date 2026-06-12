@@ -77,13 +77,13 @@ export default function Contact() {
                   Ubicación
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
-                  Av. 7 Poniente núm. 101, Col. Centro
+                  C. 11 Sur 14502-3ra, San Ramón
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
-                  Palmar de Bravo, Puebla
+                  Heroica Puebla de Zaragoza, Pue.
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "rgba(215,220,226,0.55)" }}>
-                  C.P. 75500
+                  C.P. 72490
                 </p>
               </div>
             </div>
@@ -101,13 +101,13 @@ export default function Contact() {
                   Teléfono
                 </p>
                 <a
-                  href="tel:+522491084431"
+                  href="tel:+522228139825"
                   className="text-sm transition-colors"
                   style={{ color: "#D7DCE2" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#8AACCA")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#D7DCE2")}
                 >
-                  249 108 4431
+                  222 813 9825
                 </a>
               </div>
             </div>
@@ -125,13 +125,13 @@ export default function Contact() {
                   Email
                 </p>
                 <a
-                  href="mailto:psd_ezequiel23@hotmail.com"
+                  href="mailto:Javierhrdirector@gmail.com"
                   className="text-sm break-all transition-colors"
                   style={{ color: "#D7DCE2" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#8AACCA")}
                   onMouseLeave={(e) => (e.currentTarget.style.color = "#D7DCE2")}
                 >
-                  psd_ezequiel23@hotmail.com
+                  Javierhrdirector@gmail.com
                 </a>
               </div>
             </div>
@@ -173,7 +173,7 @@ export default function Contact() {
               <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-4">
                 {[
                   { id: "nombre",   label: "Nombre completo *", type: "text",  req: true,  placeholder: "Tu nombre" },
-                  { id: "telefono", label: "Teléfono *",         type: "tel",   req: true,  placeholder: "249 108 4431" },
+                  { id: "telefono", label: "Teléfono *",         type: "tel",   req: true,  placeholder: "222 813 9825" },
                   { id: "email",    label: "Email *",             type: "email", req: true,  placeholder: "tu@email.com" },
                 ].map((f) => (
                   <div key={f.id}>

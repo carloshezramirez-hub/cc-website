@@ -135,7 +135,7 @@ export function FooterSection({
               className="text-xs leading-relaxed max-w-[220px]"
               style={{ color: "rgba(215,220,226,0.28)" }}
             >
-              Construcción, obra civil e infraestructura con precisión técnica en Palmar de Bravo, Puebla.
+              Construcción, obra civil e infraestructura con precisión técnica en Puebla, México.
             </p>
             <div className="flex gap-2.5 mt-5">
               {socialItems.map(({ Icon, href, label }) => (
