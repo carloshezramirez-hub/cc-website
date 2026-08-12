@@ -14,7 +14,7 @@ export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla",
   const [expanded, setExpanded] = useState(false);
 
   const mapUrl =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d120926.85483994507!2d-98.32282!3d19.04141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc0f1e93a6647%3A0xf2a0f6d7cf5e2f08!2sPuebla%2C%20Pue.!5e0!3m2!1ses!2smx!4v1700000000000!5m2!1ses!2smx";
+    "https://www.google.com/maps?q=C.+11+Sur+14502-3ra,+San+Ram%C3%B3n,+Heroica+Puebla+de+Zaragoza,+Puebla,+72490&output=embed";
 
   return (
     <div className={cn("w-full", className)}>
@@ -41,7 +41,7 @@ export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla",
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="https://maps.google.com/?q=Puebla,Mexico"
+            href="https://maps.google.com/?q=C.+11+Sur+14502-3ra,+San+Ram%C3%B3n,+Heroica+Puebla+de+Zaragoza,+Puebla,+72490"
             target="_blank" rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1 text-[10px] uppercase tracking-widest transition-colors"
             style={{ color: "rgba(138,172,202,0.30)" }}

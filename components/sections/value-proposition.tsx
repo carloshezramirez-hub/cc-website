@@ -27,10 +27,10 @@ const values = [
 ];
 
 const stats = [
-  { value: "10+",    label: "Años" },
-  { value: "200+",   label: "Proyectos" },
-  { value: "100%",   label: "Compromiso" },
-  { value: "Puebla", label: "Operaciones" },
+  { value: "15+",  label: "Años de experiencia" },
+  { value: "200+", label: "Proyectos" },
+  { value: "100%", label: "Compromiso" },
+  { value: "3",    label: "Estados: Puebla, Tlaxcala, Qro." },
 ];
 
 export default function ValueProposition() {
