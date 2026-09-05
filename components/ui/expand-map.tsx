@@ -10,11 +10,11 @@ interface ExpandMapProps {
   className?: string;
 }
 
-export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla", address = "C. 11 Sur 14502-3ra · C.P. 72490", className }: ExpandMapProps) {
+export function ExpandMap({ location = "C&C Contratistas · Vista Alegre, Puebla", address = "Nevada #2, Fracc. Vista Alegre", className }: ExpandMapProps) {
   const [expanded, setExpanded] = useState(false);
 
   const mapUrl =
-    "https://www.google.com/maps?q=C.+11+Sur+14502-3ra,+San+Ram%C3%B3n,+Heroica+Puebla+de+Zaragoza,+Puebla,+72490&output=embed";
+    "https://www.google.com/maps?q=Nevada+2,+Fraccionamiento+Vista+Alegre,+Puebla,+Pue.&output=embed";
 
   return (
     <div className={cn("w-full", className)}>
@@ -41,7 +41,7 @@ export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla",
         </div>
         <div className="flex items-center gap-3">
           <a
-            href="https://maps.google.com/?q=C.+11+Sur+14502-3ra,+San+Ram%C3%B3n,+Heroica+Puebla+de+Zaragoza,+Puebla,+72490"
+            href="https://maps.google.com/?q=Nevada+2,+Fraccionamiento+Vista+Alegre,+Puebla,+Pue."
             target="_blank" rel="noopener noreferrer"
             className="hidden sm:flex items-center gap-1 text-[10px] uppercase tracking-widest transition-colors"
             style={{ color: "rgba(138,172,202,0.30)" }}
@@ -91,7 +91,7 @@ export function ExpandMap({ location = "C&C Contratistas · San Ramón, Puebla",
           className="w-full h-full"
           style={{ border: 0, filter: "invert(92%) hue-rotate(180deg) grayscale(50%)" }}
           allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"
-          title="Ubicación C&C Contratistas — San Ramón, Puebla de Zaragoza"
+          title="Ubicación C&C Contratistas — Vista Alegre, Puebla"
         />
       </div>
     </div>

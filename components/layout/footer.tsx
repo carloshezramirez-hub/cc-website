@@ -17,7 +17,7 @@ export default function Footer() {
         { label: "Supervisión de obra",    href: "#servicios" },
       ]}
       contactInfo={{
-        location: "C. 11 Sur 14502-3ra, San Ramón\nHeroica Puebla de Zaragoza, Pue. · C.P. 72490",
+        location: "Nevada #2, Fracc. Vista Alegre\nPuebla, Pue.",
         phone:    "222 813 9825",
         email:    "Javierhrdirector@gmail.com",
       }}

@@ -77,13 +77,10 @@ export default function Contact() {
                   Ubicación
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
-                  C. 11 Sur 14502-3ra, San Ramón
+                  Nevada #2, Fracc. Vista Alegre
                 </p>
                 <p className="text-sm leading-relaxed" style={{ color: "#D7DCE2" }}>
-                  Heroica Puebla de Zaragoza, Pue.
-                </p>
-                <p className="text-sm leading-relaxed" style={{ color: "rgba(215,220,226,0.55)" }}>
-                  C.P. 72490
+                  Puebla, Pue.
                 </p>
               </div>
             </div>
